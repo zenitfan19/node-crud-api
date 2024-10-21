@@ -1,0 +1,36 @@
+{
+  "name": "crud-api",
+  "version": "1.0.0",
+  "description": "This repository is the solution of nodejs-assignments https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/crud-api/score.md",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "nodemon src/app.ts",
+    "start:prod": "npm run build && node dist/app.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenitfan19/node-crud-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "crud"
+  ],
+  "author": "Andrey Lavrov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zenitfan19/node-crud-api/issues"
+  },
+  "homepage": "https://github.com/zenitfan19/node-crud-api#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.7",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
