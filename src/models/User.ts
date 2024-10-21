@@ -24,6 +24,8 @@ class User {
     if (hobbies) {
       this.hobbies = hobbies;
     }
+
+    return this;
   }
 }
 

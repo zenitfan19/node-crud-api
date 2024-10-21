@@ -19,6 +19,8 @@ class UsersModel {
   addUser(userData: UserInput) {
     const user = new User(userData);
     this.users.push(user);
+
+    return user;
   }
 
   deleteUser(userId: string) {
