@@ -14,6 +14,7 @@ const getUsers = (response: ServerResponse) => {
     response.end(JSON.stringify(users));
   } catch (error) {
     console.error(error);
+    sendErrorResonse(500, "Internal server error", response);
   }
 };
 
@@ -35,6 +36,7 @@ const getUser = (userId: string, response: ServerResponse) => {
     }
   } catch (error) {
     console.error(error);
+    sendErrorResonse(500, "Internal server error", response);
   }
 };
 
@@ -63,6 +65,7 @@ const createUser = (request: IncomingMessage, response: ServerResponse) => {
       response.end(JSON.stringify(newUser));
     } catch (error) {
       console.error(error);
+      sendErrorResonse(500, "Internal server error", response);
     }
   });
 };
@@ -108,6 +111,7 @@ const updateUser = (
       response.end(JSON.stringify(updatedUser));
     } catch (error) {
       console.error(error);
+      sendErrorResonse(500, "Internal server error", response);
     }
   });
 };

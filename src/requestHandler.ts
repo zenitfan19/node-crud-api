@@ -8,6 +8,7 @@ import {
   getUsers,
   updateUser,
 } from "./userService";
+import { sendErrorResonse } from "./helpers/sendErrorResponse";
 
 export const requestHandler = async (
   request: IncomingMessage,
@@ -23,28 +24,31 @@ export const requestHandler = async (
 
     if (userId) {
       if (method === HttpMethod.GET) {
-        getUser(userId, response);
+        return getUser(userId, response);
       }
 
       if (method === HttpMethod.PUT) {
-        updateUser(userId, request, response);
+        return updateUser(userId, request, response);
       }
 
       if (method === HttpMethod.DELETE) {
-        deleteUser(userId, response);
+        return deleteUser(userId, response);
       }
     }
 
     if (pathname === "/api/users") {
       if (method === HttpMethod.GET) {
-        getUsers(response);
+        return getUsers(response);
       }
 
       if (method === HttpMethod.POST) {
-        createUser(request, response);
+        return createUser(request, response);
       }
     }
+
+    sendErrorResonse(404, "Invalid endpoint", response);
   } catch (error) {
     console.error(error);
+    sendErrorResonse(500, "Internal server error", response);
   }
 };
