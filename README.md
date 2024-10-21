@@ -14,6 +14,10 @@ npm run start:dev
 ```
 npm run start:prod
 ```
+## How to start tests
+```
+npm run test
+```
 ## Request examples
 ## GET
 ```
