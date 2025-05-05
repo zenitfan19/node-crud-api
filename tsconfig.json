@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "Node16",
+    "target": "ESNext",
+    "module": "NodeNext",
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "moduleResolution": "Node16"
+    "moduleResolution": "nodenext"
   },
-  "include": [
-    "src/**/*.ts"
-  ]
+  "include": ["src/**/*.ts"]
 }

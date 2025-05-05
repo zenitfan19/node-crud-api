@@ -1,7 +1,7 @@
 import { config as dotenvConfig } from "dotenv";
 import request from "supertest";
 import { createServer, Server } from "http";
-import uuid, { validate } from "uuid";
+import uuid from "uuid";
 import { requestHandler } from "./requestHandler";
 import { UserInput } from "./types";
 
@@ -72,7 +72,7 @@ describe("GET /api/users", () => {
       ...user,
     });
   });
-  it("should return an array with newly creted user", async () => {
+  it("should return an array with newly created user", async () => {
     uuidValidateSpy.mockReturnValue(true);
     const response = await request(app).get(`/api/users/${mockUuid}`);
     expect(response.status).toBe(200);

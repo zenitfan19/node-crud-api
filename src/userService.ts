@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from "node:http";
 import { validate } from "uuid";
 import { UsersModel } from "./models/UsersModel";
 import { UserInput } from "./types";
-import { sendErrorResonse } from "./helpers/sendErrorResponse";
+import { sendErrorResponse } from "./helpers/sendErrorResponse";
 
 const usersModel = new UsersModel();
 
@@ -14,7 +14,7 @@ const getUsers = (response: ServerResponse) => {
     response.end(JSON.stringify(users));
   } catch (error) {
     console.error(error);
-    sendErrorResonse(500, "Internal server error", response);
+    sendErrorResponse(500, "Internal server error", response);
   }
 };
 
@@ -22,7 +22,7 @@ const getUser = (userId: string, response: ServerResponse) => {
   try {
     const isUserIdInvalid = !validate(userId);
     if (isUserIdInvalid) {
-      sendErrorResonse(400, "Invalid user id", response);
+      sendErrorResponse(400, "Invalid user id", response);
       return;
     }
 
@@ -32,11 +32,11 @@ const getUser = (userId: string, response: ServerResponse) => {
       response.writeHead(200, { "Content-Type": "application/json" });
       response.end(JSON.stringify(user));
     } else {
-      sendErrorResonse(404, "User not found", response);
+      sendErrorResponse(404, "User not found", response);
     }
   } catch (error) {
     console.error(error);
-    sendErrorResonse(500, "Internal server error", response);
+    sendErrorResponse(500, "Internal server error", response);
   }
 };
 
@@ -55,7 +55,7 @@ const createUser = (request: IncomingMessage, response: ServerResponse) => {
         !username || typeof age !== "number" || !Array.isArray(hobbies);
 
       if (isUserDataInvalid) {
-        sendErrorResonse(400, "Invalid user data", response);
+        sendErrorResponse(400, "Invalid user data", response);
         return;
       }
 
@@ -65,7 +65,7 @@ const createUser = (request: IncomingMessage, response: ServerResponse) => {
       response.end(JSON.stringify(newUser));
     } catch (error) {
       console.error(error);
-      sendErrorResonse(500, "Internal server error", response);
+      sendErrorResponse(500, "Internal server error", response);
     }
   });
 };
@@ -77,13 +77,13 @@ const updateUser = (
 ) => {
   const isUserIdInvalid = !validate(userId);
   if (isUserIdInvalid) {
-    sendErrorResonse(400, "Invalid user id", response);
+    sendErrorResponse(400, "Invalid user id", response);
     return;
   }
 
   const user = usersModel.getUser(userId);
   if (!user) {
-    sendErrorResonse(404, "User not found", response);
+    sendErrorResponse(404, "User not found", response);
     return;
   }
 
@@ -101,7 +101,7 @@ const updateUser = (
         !username || typeof age !== "number" || !Array.isArray(hobbies);
 
       if (isUserDataInvalid) {
-        sendErrorResonse(400, "Invalid user data", response);
+        sendErrorResponse(400, "Invalid user data", response);
         return;
       }
 
@@ -111,7 +111,7 @@ const updateUser = (
       response.end(JSON.stringify(updatedUser));
     } catch (error) {
       console.error(error);
-      sendErrorResonse(500, "Internal server error", response);
+      sendErrorResponse(500, "Internal server error", response);
     }
   });
 };
@@ -119,13 +119,13 @@ const updateUser = (
 const deleteUser = (userId: string, response: ServerResponse) => {
   const isUserIdInvalid = !validate(userId);
   if (isUserIdInvalid) {
-    sendErrorResonse(400, "Invalid user id", response);
+    sendErrorResponse(400, "Invalid user id", response);
     return;
   }
 
   const user = usersModel.getUser(userId);
   if (!user) {
-    sendErrorResonse(404, "User not found", response);
+    sendErrorResponse(404, "User not found", response);
     return;
   }
 

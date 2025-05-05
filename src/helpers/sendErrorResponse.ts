@@ -1,6 +1,6 @@
 import { ServerResponse } from "node:http";
 
-const sendErrorResonse = (
+const sendErrorResponse = (
   status: number,
   message: string,
   response: ServerResponse
@@ -9,4 +9,4 @@ const sendErrorResonse = (
   response.end(JSON.stringify({ message }));
 };
 
-export { sendErrorResonse };
+export { sendErrorResponse };

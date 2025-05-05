@@ -8,12 +8,12 @@ import {
   getUsers,
   updateUser,
 } from "./userService";
-import { sendErrorResonse } from "./helpers/sendErrorResponse";
+import { sendErrorResponse } from "./helpers/sendErrorResponse";
 
-export const requestHandler = async (
+export const requestHandler = (
   request: IncomingMessage,
   response: ServerResponse
-): Promise<void> => {
+) => {
   try {
     const { url = "", method, headers } = request;
     const parsedUrl = new URL(url, `http://${headers.host}`);
@@ -46,9 +46,9 @@ export const requestHandler = async (
       }
     }
 
-    sendErrorResonse(404, "Invalid endpoint", response);
+    sendErrorResponse(404, "Invalid endpoint", response);
   } catch (error) {
     console.error(error);
-    sendErrorResonse(500, "Internal server error", response);
+    sendErrorResponse(500, "Internal server error", response);
   }
 };
