@@ -4,7 +4,7 @@ import { UsersModel } from "./models/UsersModel";
 import { UserInput } from "./types";
 import { sendErrorResponse } from "./helpers/sendErrorResponse";
 
-const usersModel = new UsersModel();
+const usersModel = UsersModel.getInstance();
 
 const getUsers = (response: ServerResponse) => {
   try {
@@ -105,7 +105,11 @@ const updateUser = (
         return;
       }
 
-      const updatedUser = user.updateUser({ username, age, hobbies });
+      const updatedUser = usersModel.updateUser(userId, {
+        username,
+        age,
+        hobbies,
+      });
 
       response.writeHead(201, { "Content-Type": "application/json" });
       response.end(JSON.stringify(updatedUser));

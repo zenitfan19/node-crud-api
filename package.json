@@ -9,6 +9,7 @@
   "scripts": {
     "start:dev": "nodemon src/app.ts",
     "start:prod": "npm run build && node dist/app.js",
+    "start:multi": "npm run build && node dist/loadBalancer.js",
     "build": "tsc",
     "test": "jest",
     "lint": "eslint . --ext .ts",

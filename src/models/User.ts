@@ -14,6 +14,17 @@ class User {
     this.hobbies = userData.hobbies;
   }
 
+  static fromPlainObject(plainUser: User): User {
+    const user = new User({
+      username: plainUser.username,
+      age: plainUser.age,
+      hobbies: plainUser.hobbies,
+    });
+
+    Object.defineProperty(user, "id", { value: plainUser.id });
+    return user;
+  }
+
   updateUser({ username, age, hobbies }: UserInput) {
     if (username) {
       this.username = username;
