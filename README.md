@@ -24,6 +24,12 @@ npm run start:dev
 npm run start:prod
 ```
 
+### With load balancer
+
+```
+npm run start:multi
+```
+
 ## How to start tests
 
 ```
